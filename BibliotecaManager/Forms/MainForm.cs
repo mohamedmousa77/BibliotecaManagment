@@ -8,6 +8,7 @@ namespace BibliotecaManager.Forms
     {
         private PersonaController personaController;
         private DataStorageService storageService;
+        private PrestitoController prestitoController;
         private string folderPath;
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -45,7 +46,7 @@ namespace BibliotecaManager.Forms
             gestioneMenu.DropDownItems.Add("Autori", null, (s, e) => new AutoriForm(personaController, storageService,folderPath).ShowDialog());
             gestioneMenu.DropDownItems.Add("Clienti", null, (s, e) => new ClientiForm(personaController, storageService, folderPath).ShowDialog());
             gestioneMenu.DropDownItems.Add("Libri", null, (s, e) => new LibriForm().ShowDialog());
-            gestioneMenu.DropDownItems.Add("Prestiti", null, (s, e) => new PrestitiForm().ShowDialog());
+            gestioneMenu.DropDownItems.Add("Prestiti", null, (s, e) => new PrestitiForm(prestitoController,storageService, folderPath).ShowDialog());
 
             var statisticheMenu = new ToolStripMenuItem("Statiche");
             statisticheMenu.Click += (s, e) => new StatisticheForm().ShowDialog();
