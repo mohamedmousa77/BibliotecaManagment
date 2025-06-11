@@ -9,7 +9,7 @@ namespace BibliotecaManager.Controllers
 {
     public class PrestitoController
     {
-        public List<Prestito> Prestiti { get; set; } = new List<Prestito>();
+        public List<Prestito> Prestiti { get;private set; } = new List<Prestito>();
         public bool AggiungiPrestito(Prestito prestito)
         {
             if (prestito.LibroPrestato.QuantitaMagazzino == 0) return false;
