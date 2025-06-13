@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <IntermediateOutputPath>C:\Users\A713AP~1\AppData\Local\Temp\vsC1C0.tmp\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\A714apulia\AppData\Local\Temp\vs5488.tmp\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,15 +32,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <IntermediateOutputPath>C:\Users\A713AP~1\AppData\Local\Temp\vsC1C0.tmp\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\A714apulia\AppData\Local\Temp\vs5488.tmp\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +79,12 @@
     <Compile Include="Forms\ClientiForm.Designer.cs">
       <DependentUpon>ClientiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InscerisciLibro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InscerisciLibro.Designer.cs">
+      <DependentUpon>InscerisciLibro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InserisciAutoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +96,12 @@
     </Compile>
     <Compile Include="Forms\InserisciClienteForm.Designer.cs">
       <DependentUpon>InserisciClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InserisciPrestito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InserisciPrestito.Designer.cs">
+      <DependentUpon>InserisciPrestito.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LibriForm.cs">
       <SubType>Form</SubType>
@@ -108,6 +126,12 @@
     </Compile>
     <Compile Include="Forms\ModificaClienteForm.Designer.cs">
       <DependentUpon>ModificaClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ModificaLibriForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ModificaLibriForm.Designer.cs">
+      <DependentUpon>ModificaLibriForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PrestitiForm.cs">
       <SubType>Form</SubType>
@@ -135,14 +159,29 @@
     <EmbeddedResource Include="Forms\ClientiForm.resx">
       <DependentUpon>ClientiForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InscerisciLibro.resx">
+      <DependentUpon>InscerisciLibro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\InserisciAutoreForm.resx">
       <DependentUpon>InserisciAutoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InserisciClienteForm.resx">
       <DependentUpon>InserisciClienteForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InserisciPrestito.resx">
+      <DependentUpon>InserisciPrestito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LibriForm.resx">
+      <DependentUpon>LibriForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ModificaLibriForm.resx">
+      <DependentUpon>ModificaLibriForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StatisticheForm.resx">
+      <DependentUpon>StatisticheForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

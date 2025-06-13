@@ -37,7 +37,7 @@
             // 
             // btnElimina
             // 
-            this.btnElimina.Location = new System.Drawing.Point(940, 365);
+            this.btnElimina.Location = new System.Drawing.Point(940, 517);
             this.btnElimina.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnElimina.Name = "btnElimina";
             this.btnElimina.Size = new System.Drawing.Size(214, 69);
@@ -47,7 +47,7 @@
             // 
             // btnModifica
             // 
-            this.btnModifica.Location = new System.Drawing.Point(498, 365);
+            this.btnModifica.Location = new System.Drawing.Point(498, 517);
             this.btnModifica.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnModifica.Name = "btnModifica";
             this.btnModifica.Size = new System.Drawing.Size(225, 69);
@@ -57,7 +57,7 @@
             // 
             // btnAggiungi
             // 
-            this.btnAggiungi.Location = new System.Drawing.Point(34, 365);
+            this.btnAggiungi.Location = new System.Drawing.Point(34, 517);
             this.btnAggiungi.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAggiungi.Name = "btnAggiungi";
             this.btnAggiungi.Size = new System.Drawing.Size(236, 69);
@@ -73,7 +73,7 @@
             this.dgvClienti.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvClienti.Name = "dgvClienti";
             this.dgvClienti.RowHeadersWidth = 62;
-            this.dgvClienti.Size = new System.Drawing.Size(1164, 337);
+            this.dgvClienti.Size = new System.Drawing.Size(1164, 462);
             this.dgvClienti.TabIndex = 3;
             // 
             // ClientiForm

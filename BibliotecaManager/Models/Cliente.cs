@@ -10,5 +10,7 @@ namespace BibliotecaManager.Models
         public string Telefono { get; set; }    
         public bool Socio { get; set; }
 
+        public string NomeCompleto => Persona?.Nome + " " + Persona?.Cognome;
+
     }
 }

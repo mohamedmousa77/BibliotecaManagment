@@ -35,18 +35,21 @@ namespace BibliotecaManager.Forms
             this.dataConsegna = new System.Windows.Forms.DateTimePicker();
             this.dataPrestito = new System.Windows.Forms.DateTimePicker();
             this.txtLibro = new System.Windows.Forms.TextBox();
-            this.txtCliente = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.clienteComboBox = new System.Windows.Forms.ComboBox();
+            this.autoriComboBox = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.libroComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnConferma
             // 
-            this.btnConferma.Location = new System.Drawing.Point(67, 330);
+            this.btnConferma.Location = new System.Drawing.Point(114, 416);
             this.btnConferma.Name = "btnConferma";
             this.btnConferma.Size = new System.Drawing.Size(211, 88);
             this.btnConferma.TabIndex = 0;
@@ -56,7 +59,7 @@ namespace BibliotecaManager.Forms
             // 
             // btnAnnulla
             // 
-            this.btnAnnulla.Location = new System.Drawing.Point(339, 330);
+            this.btnAnnulla.Location = new System.Drawing.Point(386, 416);
             this.btnAnnulla.Name = "btnAnnulla";
             this.btnAnnulla.Size = new System.Drawing.Size(196, 88);
             this.btnAnnulla.TabIndex = 1;
@@ -66,40 +69,32 @@ namespace BibliotecaManager.Forms
             // 
             // dataScadenza
             // 
-            this.dataScadenza.Location = new System.Drawing.Point(268, 214);
+            this.dataScadenza.Location = new System.Drawing.Point(315, 275);
             this.dataScadenza.Name = "dataScadenza";
             this.dataScadenza.Size = new System.Drawing.Size(267, 26);
             this.dataScadenza.TabIndex = 2;
             // 
             // dataConsegna
             // 
-            this.dataConsegna.Location = new System.Drawing.Point(268, 284);
+            this.dataConsegna.Location = new System.Drawing.Point(315, 345);
             this.dataConsegna.Name = "dataConsegna";
             this.dataConsegna.Size = new System.Drawing.Size(267, 26);
             this.dataConsegna.TabIndex = 3;
             // 
             // dataPrestito
             // 
-            this.dataPrestito.Location = new System.Drawing.Point(268, 140);
+            this.dataPrestito.Location = new System.Drawing.Point(315, 201);
             this.dataPrestito.Name = "dataPrestito";
             this.dataPrestito.Size = new System.Drawing.Size(267, 26);
             this.dataPrestito.TabIndex = 4;
             // 
             // txtLibro
             // 
-            this.txtLibro.Location = new System.Drawing.Point(268, 78);
+            this.txtLibro.Location = new System.Drawing.Point(314, 78);
             this.txtLibro.Name = "txtLibro";
             this.txtLibro.Size = new System.Drawing.Size(267, 26);
             this.txtLibro.TabIndex = 5;
             this.txtLibro.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // txtCliente
-            // 
-            this.txtCliente.Location = new System.Drawing.Point(268, 25);
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(267, 26);
-            this.txtCliente.TabIndex = 6;
-            this.txtCliente.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // contextMenuStrip1
             // 
@@ -129,7 +124,7 @@ namespace BibliotecaManager.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(53, 145);
+            this.label3.Location = new System.Drawing.Point(56, 206);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 20);
             this.label3.TabIndex = 10;
@@ -139,7 +134,7 @@ namespace BibliotecaManager.Forms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 219);
+            this.label4.Location = new System.Drawing.Point(56, 280);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(140, 20);
             this.label4.TabIndex = 11;
@@ -148,21 +143,61 @@ namespace BibliotecaManager.Forms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(53, 290);
+            this.label5.Location = new System.Drawing.Point(56, 351);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(141, 20);
             this.label5.TabIndex = 12;
             this.label5.Text = "Data di Consegna:";
             // 
+            // clienteComboBox
+            // 
+            this.clienteComboBox.FormattingEnabled = true;
+            this.clienteComboBox.Location = new System.Drawing.Point(319, 28);
+            this.clienteComboBox.Name = "clienteComboBox";
+            this.clienteComboBox.Size = new System.Drawing.Size(262, 28);
+            this.clienteComboBox.TabIndex = 13;
+            this.clienteComboBox.SelectedIndexChanged += new System.EventHandler(this.clienteComboBox_SelectedIndexChanged);
+            // 
+            // autoriComboBox
+            // 
+            this.autoriComboBox.FormattingEnabled = true;
+            this.autoriComboBox.Location = new System.Drawing.Point(314, 133);
+            this.autoriComboBox.Name = "autoriComboBox";
+            this.autoriComboBox.Size = new System.Drawing.Size(267, 28);
+            this.autoriComboBox.TabIndex = 14;
+            this.autoriComboBox.SelectedIndexChanged += new System.EventHandler(this.autoriComboBox_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(57, 136);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 20);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Autore";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // libroComboBox
+            // 
+            this.libroComboBox.FormattingEnabled = true;
+            this.libroComboBox.Location = new System.Drawing.Point(613, 82);
+            this.libroComboBox.Name = "libroComboBox";
+            this.libroComboBox.Size = new System.Drawing.Size(223, 28);
+            this.libroComboBox.TabIndex = 16;
+            this.libroComboBox.SelectedIndexChanged += new System.EventHandler(this.libroComboBox_SelectedIndexChanged);
+            // 
             // InserisciPrestitoForm
             // 
-            this.ClientSize = new System.Drawing.Size(723, 443);
+            this.ClientSize = new System.Drawing.Size(921, 559);
+            this.Controls.Add(this.libroComboBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.autoriComboBox);
+            this.Controls.Add(this.clienteComboBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.txtLibro);
             this.Controls.Add(this.dataPrestito);
             this.Controls.Add(this.dataConsegna);
@@ -185,12 +220,16 @@ namespace BibliotecaManager.Forms
         private System.Windows.Forms.DateTimePicker dataConsegna;
         private System.Windows.Forms.DateTimePicker dataPrestito;
         private System.Windows.Forms.TextBox txtLibro;
-        private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox clienteComboBox;
+        private System.Windows.Forms.ComboBox autoriComboBox;
+        private System.Windows.Forms.ComboBox libroComboBox;
+        private System.Windows.Forms.Label label6;
+        
     }
 }

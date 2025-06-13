@@ -10,9 +10,9 @@ namespace BibliotecaManager.Controllers
 
         private readonly List<Prestito> prestiti;
 
-        public LibroController(List<Prestito> prestiti)
+        public LibroController()
         {
-            this.prestiti = prestiti;
+            //this.prestiti = prestiti;
         }
 
         public void AggiungiLibro(Libro libro) => Libri.Add(libro);

@@ -21,9 +21,13 @@ namespace BibliotecaManager.Forms
             personaController = controller;
             storageService = storage;
             folderPath = path;
-            
+            dgvAutori.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            AggiornaGrid();
+            dgvAutori.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ConfiguraGrid();
-            AggiornaGrid(); // Ora mostrerà i dati caricati dal file JSON
+            //AggiornaGrid(); // Ora mostrerà i dati caricati dal file JSON
+
+            
         }
 
         private void ConfiguraGrid()
@@ -175,6 +179,7 @@ namespace BibliotecaManager.Forms
         {
 
         }
+
 
         private void dgvAutori_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

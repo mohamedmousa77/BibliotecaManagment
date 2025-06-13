@@ -35,7 +35,7 @@ namespace BibliotecaManager.Forms
 
         private void btnAggiungi_Click(object sender, EventArgs e)
         {
-            using (var form = new InserisciPrestitoForm())
+            using (var form = new InserisciPrestitoForm(folderPath))
             {
                 var PrestitoController = new PrestitoController();
                 if (form.ShowDialog() == DialogResult.OK)
@@ -74,7 +74,7 @@ namespace BibliotecaManager.Forms
                 dgvPrestito.SuspendLayout();
 
 
-                var dati = PrestitiController.Prestiti.Select(a => new
+                var dati = PrestitiController?.Prestiti?.Select(a => new
                 {
                     Cliente = a.Cliente,
                     Libro = a.LibroPrestato,
@@ -84,7 +84,7 @@ namespace BibliotecaManager.Forms
                 }).ToList();
 
                 dgvPrestito.DataSource = null;
-                dgvPrestito.DataSource = dati;
+                //dgvPrestito.DataSource = dati;
             }
             finally
             {
