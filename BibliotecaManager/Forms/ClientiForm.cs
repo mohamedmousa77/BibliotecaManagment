@@ -96,11 +96,11 @@ namespace BibliotecaManager.Forms
                     {
                         personaController.AggiungiCliente(form.Cliente);
                         AggiornaGrid();
-                        storageService.SalvaTutti(folderPath, new List<Autore>() ,personaController.Clienti, new List<Libro>(), new List<Prestito>());
-
+                        //storageService.SalvaTutti(folderPath, new List<Autore>() ,personaController.Clienti, new List<Libro>(), new List<Prestito>());
+                        storageService.SalvaClienti(folderPath, personaController.Clienti);
                         if (storageService.VerificaSalvataggio(folderPath))
                         {
-                            MessageBox.Show($"Dati salvati correttamente", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show($"Dati salvati correttamente", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
@@ -113,6 +113,11 @@ namespace BibliotecaManager.Forms
                     }
                 }
             }
+        }
+
+        private void ClientiForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

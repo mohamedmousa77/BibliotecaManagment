@@ -37,57 +37,77 @@
             // 
             // btnElimina
             // 
-            this.btnElimina.Location = new System.Drawing.Point(940, 517);
+            this.btnElimina.BackColor = System.Drawing.Color.LightCoral;
+            this.btnElimina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnElimina.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnElimina.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnElimina.Location = new System.Drawing.Point(743, 465);
             this.btnElimina.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnElimina.Name = "btnElimina";
-            this.btnElimina.Size = new System.Drawing.Size(214, 69);
+            this.btnElimina.Size = new System.Drawing.Size(263, 89);
             this.btnElimina.TabIndex = 0;
             this.btnElimina.Text = "Elimina";
-            this.btnElimina.UseVisualStyleBackColor = true;
+            this.btnElimina.UseVisualStyleBackColor = false;
             // 
             // btnModifica
             // 
-            this.btnModifica.Location = new System.Drawing.Point(498, 517);
+            this.btnModifica.BackColor = System.Drawing.Color.Khaki;
+            this.btnModifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModifica.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModifica.ForeColor = System.Drawing.Color.Goldenrod;
+            this.btnModifica.Location = new System.Drawing.Point(376, 465);
             this.btnModifica.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnModifica.Name = "btnModifica";
-            this.btnModifica.Size = new System.Drawing.Size(225, 69);
+            this.btnModifica.Size = new System.Drawing.Size(274, 89);
             this.btnModifica.TabIndex = 1;
             this.btnModifica.Text = "Modifica";
-            this.btnModifica.UseVisualStyleBackColor = true;
+            this.btnModifica.UseVisualStyleBackColor = false;
             // 
             // btnAggiungi
             // 
-            this.btnAggiungi.Location = new System.Drawing.Point(34, 517);
+            this.btnAggiungi.BackColor = System.Drawing.Color.LightGreen;
+            this.btnAggiungi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAggiungi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAggiungi.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnAggiungi.Location = new System.Drawing.Point(25, 465);
             this.btnAggiungi.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAggiungi.Name = "btnAggiungi";
-            this.btnAggiungi.Size = new System.Drawing.Size(236, 69);
+            this.btnAggiungi.Size = new System.Drawing.Size(285, 89);
             this.btnAggiungi.TabIndex = 2;
             this.btnAggiungi.Text = "Aggiungi";
-            this.btnAggiungi.UseVisualStyleBackColor = true;
+            this.btnAggiungi.UseVisualStyleBackColor = false;
             this.btnAggiungi.Click += new System.EventHandler(this.btnAggiungi_Click);
             // 
             // dgvClienti
             // 
+            this.dgvClienti.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvClienti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClienti.Location = new System.Drawing.Point(18, 18);
             this.dgvClienti.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvClienti.Name = "dgvClienti";
             this.dgvClienti.RowHeadersWidth = 62;
-            this.dgvClienti.Size = new System.Drawing.Size(1164, 462);
+            this.dgvClienti.Size = new System.Drawing.Size(1019, 411);
             this.dgvClienti.TabIndex = 3;
             // 
             // ClientiForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1050, 589);
             this.Controls.Add(this.dgvClienti);
             this.Controls.Add(this.btnAggiungi);
             this.Controls.Add(this.btnModifica);
             this.Controls.Add(this.btnElimina);
+            this.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ClientiForm";
-            this.Text = "ClientiForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "👥 Gestione Clienti";
+            this.Load += new System.EventHandler(this.ClientiForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClienti)).EndInit();
             this.ResumeLayout(false);
 

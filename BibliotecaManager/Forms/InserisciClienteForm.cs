@@ -28,41 +28,15 @@ namespace BibliotecaManager.Forms
             }
             if (string.IsNullOrWhiteSpace(txtMail.Text))
             {
-                MessageBox.Show("Inserire la casa editrice");
+                MessageBox.Show("Inserire la mail");
                 return false;
             }
             if (string.IsNullOrWhiteSpace(txtPhone.Text))
             {
-                MessageBox.Show("Inserire la casa editrice");
+                MessageBox.Show("Inserire il numero di telefono");
                 return false;
             }
             return true;
-        }
-
-        
-        private void InserisciClienteForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCognome_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblCasaEditrice_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAnnulla_Click_1(object sender, EventArgs e)
@@ -91,5 +65,32 @@ namespace BibliotecaManager.Forms
                 Close();
             }
         }
+
+        private void InserisciClienteForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCognome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCasaEditrice_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

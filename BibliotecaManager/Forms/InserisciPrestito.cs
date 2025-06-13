@@ -22,19 +22,17 @@ namespace BibliotecaManager.Forms
         public InserisciPrestitoForm(string folderPath)
         {
             InitializeComponent();
-            CaricaClienti(folderPath);
-            CaricaAutori(folderPath);
-            CaricaLibri(folderPath);
+            //CaricaClienti(folderPath);
+            //CaricaAutori(folderPath);
+            //CaricaLibri(folderPath);
+            CaricaDati(folderPath);
 
         }
 
-
-
-
-        private bool CaricaClienti(string folderPath)
+        private bool CaricaDati(string folderPath)
         {
             var storageService = new DataStorageService();
-            var (_, clienti, _, _) = storageService.CaricaTutti(folderPath);
+            var (autori, clienti, libri, _) = storageService.CaricaTutti(folderPath);
 
             if (clienti == null || clienti.Count == 0)
             {
@@ -47,22 +45,9 @@ namespace BibliotecaManager.Forms
 
                 clienteComboBox.DataSource = null;
                 clienteSelezionato = null;
+                
                 return false;
             }
-
-            listaClienti = clienti;
-
-            clienteComboBox.DataSource = listaClienti;
-            clienteComboBox.DisplayMember = "NomeCOmpleto";
-            clienteComboBox.ValueMember = "Mail";
-            return true;
-        }
-
-        
-        private bool CaricaLibri(string folderPath)
-        {
-            var storageService = new DataStorageService();
-            var (_, _, libri, _) = storageService.CaricaTutti(folderPath);
 
             if (libri == null || libri.Count == 0)
             {
@@ -78,19 +63,6 @@ namespace BibliotecaManager.Forms
                 return false;
             }
 
-
-            listaLibri = libri;
-
-            clienteComboBox.DataSource = listaLibri;
-            clienteComboBox.DisplayMember = "Titolo";
-            clienteComboBox.ValueMember = "ISBN";
-            return true;
-        }
-        private bool CaricaAutori(string folderPath)
-        {
-            var storageService = new DataStorageService();
-            var (autori, _, _, _) = storageService.CaricaTutti(folderPath);
-
             if (autori == null || autori.Count == 0)
             {
                 MessageBox.Show(
@@ -99,20 +71,115 @@ namespace BibliotecaManager.Forms
                     "Attenzione",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
-
                 clienteComboBox.DataSource = null;
                 autoreSelezionato = null;
                 return false;
             }
 
+            listaClienti = clienti;
+            clienteComboBox.DataSource = listaClienti;
+            clienteComboBox.DisplayMember = "NomeCOmpleto";
+            clienteComboBox.ValueMember = "Mail";
 
             listaAutori = autori;
+            autoriComboBox.DataSource = listaAutori;
+            autoriComboBox.DisplayMember = "NomeCompleto";
+            autoriComboBox.ValueMember = "ID";
 
-            clienteComboBox.DataSource = listaAutori;
-            clienteComboBox.DisplayMember = "NomeCompleto";
-            clienteComboBox.ValueMember = "ID";
+            listaLibri = libri;
+            libroComboBox.DataSource = listaLibri;
+            libroComboBox.DisplayMember = "Titolo";
+            libroComboBox.ValueMember = "ISBN";
+
+
             return true;
         }
+
+
+        //private bool CaricaClienti(string folderPath)
+        //{
+        //    var storageService = new DataStorageService();
+        //    var (_, clienti, _, _) = storageService.CaricaTutti(folderPath);
+
+        //    if (clienti == null || clienti.Count == 0)
+        //    {
+        //        MessageBox.Show(
+        //            "Non sono presenti clienti nel database.\n\n" +
+        //            "Per favore, aggiungi almeno un cliente prima di inserire un prestito.",
+        //            "Attenzione",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Warning);
+
+        //        clienteComboBox.DataSource = null;
+        //        clienteSelezionato = null;
+        //        return false;
+        //    }
+
+
+
+        //    listaClienti = clienti;
+
+        //    clienteComboBox.DataSource = listaClienti;
+        //    clienteComboBox.DisplayMember = "NomeCOmpleto";
+        //    clienteComboBox.ValueMember = "Mail";
+        //    return true;
+        //}
+
+        
+        //private bool CaricaLibri(string folderPath)
+        //{
+        //    var storageService = new DataStorageService();
+        //    var (_, _, libri, _) = storageService.CaricaTutti(folderPath);
+
+        //    if (libri == null || libri.Count == 0)
+        //    {
+        //        MessageBox.Show(
+        //            "Non sono presenti libri nel database.\n\n" +
+        //            "Per favore, aggiungi almeno un libro prima di inserire un prestito.",
+        //            "Attenzione",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Warning);
+
+        //        clienteComboBox.DataSource = null;
+        //        libroSelezionato = null;
+        //        return false;
+        //    }
+
+
+        //    listaLibri = libri;
+
+        //    clienteComboBox.DataSource = listaLibri;
+        //    clienteComboBox.DisplayMember = "Titolo";
+        //    clienteComboBox.ValueMember = "ISBN";
+        //    return true;
+        //}
+        //private bool CaricaAutori(string folderPath)
+        //{
+        //    var storageService = new DataStorageService();
+        //    var (autori, _, _, _) = storageService.CaricaTutti(folderPath);
+
+        //    if (autori == null || autori.Count == 0)
+        //    {
+        //        MessageBox.Show(
+        //            "Non sono presenti autori nel database.\n\n" +
+        //            "Per favore, aggiungi almeno un autore prima di inserire un prestito.",
+        //            "Attenzione",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Warning);
+
+        //        clienteComboBox.DataSource = null;
+        //        autoreSelezionato = null;
+        //        return false;
+        //    }
+
+
+        //    listaAutori = autori;
+
+        //    clienteComboBox.DataSource = listaAutori;
+        //    clienteComboBox.DisplayMember = "NomeCompleto";
+        //    clienteComboBox.ValueMember = "ID";
+        //    return true;
+        //}
 
         private void InserisciPrestitoForm_Load(object sender, EventArgs e){ }
 
@@ -122,9 +189,11 @@ namespace BibliotecaManager.Forms
             {
                 Prestito = new Prestito
                 {
-                    Cliente = new Cliente(),
-                    LibroPrestato = new Libro(),
-                    
+                    Cliente = clienteSelezionato,
+                    Autore = autoreSelezionato,
+                    LibroPrestato = libroSelezionato,
+
+
                     DataPrestito = dataPrestito.Value,
                     DataScadenza = dataScadenza.Value,
                     DataDiConsegna = dataConsegna.Value,
@@ -137,12 +206,12 @@ namespace BibliotecaManager.Forms
         }
         private bool ValidaDati()
         {
-            if (string.IsNullOrWhiteSpace(clienteSelezionato.Persona.Nome))
+            if (string.IsNullOrWhiteSpace(clienteSelezionato.NomeCompleto))
             {
                 MessageBox.Show("Seleziona un cliente");
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(autoreSelezionato.Nome))
+            if (string.IsNullOrWhiteSpace(autoreSelezionato.NomeCompleto))
             {
                 MessageBox.Show("Seleziona un autore");
                 return false;

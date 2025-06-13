@@ -54,7 +54,71 @@ namespace BibliotecaManager.Services
                 throw new Exception($"Errore durante il caricamento dei dati: {ex.Message}");
             }
         }
+        public void SalvaClienti(string folderPath, List<Cliente> clienti)
+        {
+            try
+            {
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                File.WriteAllText(Path.Combine(folderPath, ClientiFile), JsonConvert.SerializeObject(clienti, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Errore durante il salvataggio in {folderPath}: {ex.Message}");
+            }
+        }
 
+        public void SalvaAutori(string folderPath, List<Autore> autori)
+        {
+            try
+            {
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                File.WriteAllText(Path.Combine(folderPath, AutoriFile), JsonConvert.SerializeObject(autori, Formatting.Indented));
+            
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Errore durante il salvataggio in {folderPath}: {ex.Message}");
+            }
+        }
+
+        public void SalvaLibri(string folderPath, List<Libro> libri)
+        {
+            try
+            {
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                File.WriteAllText(Path.Combine(folderPath, LibriFile), JsonConvert.SerializeObject(libri, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Errore durante il salvataggio in {folderPath}: {ex.Message}");
+            }
+        }
+
+        public void SalvaPrestiti(string folderPath, List<Prestito> prestiti)
+        {
+            try
+            {
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                File.WriteAllText(Path.Combine(folderPath, PrestitiFile), JsonConvert.SerializeObject(prestiti, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Errore durante il salvataggio in {folderPath}: {ex.Message}");
+            }
+        }
         private List<T> LeggiFile<T>(string path)
         {
             if (!File.Exists(path))

@@ -14,12 +14,12 @@ using System.Windows.Forms;
 
 namespace BibliotecaManager.Forms
 {
-    public partial class LibriForm : Form
+    public partial class Gestione : Form
     {
         private LibroController libriController;
         private DataStorageService storageService;
         private string folderPath;
-        public LibriForm(LibroController controller, DataStorageService storage, string path)
+        public Gestione(LibroController controller, DataStorageService storage, string path)
         {
             if (controller == null)
                 throw new ArgumentNullException(nameof(controller), "LibroController non puo essere nullo");
@@ -47,11 +47,11 @@ namespace BibliotecaManager.Forms
                     {
                         libriController.AggiungiLibro(form.Libro);
                         AggiornaGrid();
-                        storageService.SalvaTutti(folderPath, new List<Autore>(), new List<Cliente>(), libriController.Libri, new List<Prestito>());
-
+                        //storageService.SalvaTutti(folderPath, new List<Autore>(), new List<Cliente>(), libriController.Libri, new List<Prestito>());
+                        storageService.SalvaLibri(folderPath, libriController.Libri);
                         if (storageService.VerificaSalvataggio(folderPath))
                         {
-                            MessageBox.Show($"Dati salvati correttamente", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show($"Dati salvati correttamente", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
@@ -192,6 +192,21 @@ namespace BibliotecaManager.Forms
         private void LibriForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnElimina_Click(object sender, EventArgs e)
+        {
+            if (dgvLibri.CurrentRow?.DataBoundItem != null)
+            {
+                var libroSelezionato = libriController.Libri
+                    .FirstOrDefault(a => a.Titolo == dgvLibri.CurrentRow.Cells["Titolo"].Value.ToString());
+                MessageBox.Show($"book selected to delete. {libroSelezionato.Titolo}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (libroSelezionato != null)
+                {
+                    libriController.EliminaLibro(libroSelezionato);
+                    AggiornaGrid();
+                }
+            }      
         }
     }
 }

@@ -100,11 +100,11 @@ namespace BibliotecaManager.Forms
                     {
                         personaController.AggingiAutore(form.Autore);
                         AggiornaGrid();
-                        storageService.SalvaTutti(folderPath, personaController.Autori, new List<Cliente>(), new List<Libro>(), new List<Prestito>());
-                        
+                        //storageService.SalvaTutti(folderPath, personaController.Autori, new List<Cliente>(), new List<Libro>(), new List<Prestito>());
+                        storageService.SalvaAutori(folderPath, personaController.Autori);
                         if (storageService.VerificaSalvataggio(folderPath))
                         {
-                            MessageBox.Show($"Dati salvati correttamente", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show($"Dati salvati correttamente", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {

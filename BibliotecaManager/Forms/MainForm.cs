@@ -21,11 +21,12 @@ namespace BibliotecaManager.Forms
             InitializeComponent();
             InitializeMenu();
             //LoadForm(new Form { BackColor = Color.Orange });
+            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BibliotecaManager\\";
             personaController = new PersonaController();
             storageService = new DataStorageService();
             prestitoController = new PrestitoController();
-            libroController = new LibroController();
-            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BibliotecaManager\\";
+            libroController = new LibroController(folderPath);
+            
 
             try
             {
@@ -87,7 +88,7 @@ namespace BibliotecaManager.Forms
             var gestioneMenu = new ToolStripMenuItem("Gestione");
             gestioneMenu.DropDownItems.Add("Autori", null, (s, e) => new AutoriForm(personaController, storageService, folderPath).ShowDialog());
             gestioneMenu.DropDownItems.Add("Clienti", null, (s, e) => new ClientiForm(personaController, storageService, folderPath).ShowDialog());
-            gestioneMenu.DropDownItems.Add("Libri", null, (s, e) => new LibriForm(libroController, storageService, folderPath).ShowDialog());
+            gestioneMenu.DropDownItems.Add("Libri", null, (s, e) => new Gestione(libroController, storageService, folderPath).ShowDialog());
             gestioneMenu.DropDownItems.Add("Prestiti", null, (s, e) => new PrestitiForm(prestitoController, storageService, folderPath).ShowDialog());
 
             var statisticheMenu = new ToolStripMenuItem("Statiche");

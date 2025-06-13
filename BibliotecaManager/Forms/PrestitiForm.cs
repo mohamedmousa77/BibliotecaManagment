@@ -37,18 +37,19 @@ namespace BibliotecaManager.Forms
         {
             using (var form = new InserisciPrestitoForm(folderPath))
             {
-                var PrestitoController = new PrestitoController();
+                //var PrestitoController = new PrestitoController();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        PrestitoController.AggiungiPrestito(form.Prestito);
+                        PrestitiController.AggiungiPrestito(form.Prestito);
                         AggiornaGrid();
-                        storageService.SalvaTutti(folderPath,new List<Autore>(), new List<Cliente>(), new List<Libro>(), PrestitoController.Prestiti);
-
+                        //storageService.SalvaTutti(folderPath,new List<Autore>(), new List<Cliente>(), new List<Libro>(), PrestitoController.Prestiti);
+                        storageService.SalvaPrestiti(folderPath, PrestitiController.Prestiti);
                         if (storageService.VerificaSalvataggio(folderPath))
                         {
-                            MessageBox.Show($"Dati salvati correttamente", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Dati salvati correttamente ", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //{ form.Prestito.Autore.NomeCompleto}, { form.Prestito.Cliente.NomeCompleto}
                         }
                         else
                         {
@@ -59,6 +60,23 @@ namespace BibliotecaManager.Forms
                     {
                         MessageBox.Show($"Errore durante il salvataggio: {ex.Message}", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
+            }
+        }
+
+        private void btnElimina_Click(object sender, EventArgs e)
+        {
+            if (dgvPrestito.CurrentRow?.DataBoundItem != null)
+            {
+                var libroSelezionato = PrestitiController.Prestiti
+                    .FirstOrDefault(pres => pres.LibroPrestato.Titolo == dgvPrestito.CurrentRow.Cells["TitoloDelLibro"].Value.ToString());
+
+                MessageBox.Show($"book selected to delete. {libroSelezionato.LibroPrestato.Titolo}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                if (libroSelezionato != null)
+                {
+                    PrestitiController.RegistraDiConsegna(libroSelezionato, DateTime.Now, folderPath);
+                    AggiornaGrid();
                 }
             }
         }
@@ -74,17 +92,21 @@ namespace BibliotecaManager.Forms
                 dgvPrestito.SuspendLayout();
 
 
-                var dati = PrestitiController?.Prestiti?.Select(a => new
+                var dati = PrestitiController.Prestiti.Select(a => new
                 {
-                    Cliente = a.Cliente,
-                    Libro = a.LibroPrestato,
-                    DataPrestito = a.DataPrestito,
-                    DataScadenza = a.DataScadenza,
+
+                    TitoloDelLibro = a.LibroPrestato?.Titolo,
+                    NomeCliente = a.Cliente?.NomeCompleto,
+                    NomeAutore = a.Autore?.NomeCompleto,
+
+                    DataPrestito = a.DataPrestito.ToShortDateString(),
+                    DataScadenza = a.DataScadenza.ToShortDateString(),
                     DataConsegna = a.DataDiConsegna,
+
                 }).ToList();
 
                 dgvPrestito.DataSource = null;
-                //dgvPrestito.DataSource = dati;
+                dgvPrestito.DataSource = dati;
             }
             finally
             {
@@ -100,34 +122,26 @@ namespace BibliotecaManager.Forms
 
             dgvPrestito.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "Nome",
-                DataPropertyName = "Nome",
-                HeaderText = "Nome",
+                Name = "TitoloDelLibro",
+                DataPropertyName = "TitoloDelLibro",
+                HeaderText = "Titolo del libro",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             dgvPrestito.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "Cognome",
-                DataPropertyName = "Cognome",
-                HeaderText = "Cognome",
+                Name = "NomeCliente",
+                DataPropertyName = "NomeCliente",
+                HeaderText = "Nome Cliente",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             dgvPrestito.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "CasaEditrice",
-                DataPropertyName = "CasaEditrice",
-                HeaderText = "Casa Editrice",
+                Name = "NomeAutore",
+                DataPropertyName = "NomeAutore",
+                HeaderText = "Nome Autore",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            });
-
-            dgvPrestito.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "IndiceDiGradimento",
-                DataPropertyName = "IndiceDiGradimento",
-                HeaderText = "Gradimento",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
         }
 
@@ -135,5 +149,12 @@ namespace BibliotecaManager.Forms
         {
 
         }
+
+        private void btnModifica_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

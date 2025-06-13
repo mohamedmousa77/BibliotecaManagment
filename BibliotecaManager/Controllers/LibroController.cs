@@ -1,6 +1,8 @@
 ﻿using BibliotecaManager.Models;
+using BibliotecaManager.Services;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace BibliotecaManager.Controllers
 {
@@ -8,11 +10,17 @@ namespace BibliotecaManager.Controllers
     {
         public List<Libro> Libri { get; set; } = new List<Libro>();
 
-        private readonly List<Prestito> prestiti;
+        private  List<Prestito> Prestiti;
+        private DataStorageService dataService;
 
-        public LibroController()
+        public LibroController(string folderPath)
         {
-            //this.prestiti = prestiti;
+            dataService = new DataStorageService();
+
+            var (_, _, libri, prestiti) = dataService.CaricaTutti(folderPath);
+            Libri = libri ?? new List<Libro>();
+            Prestiti = prestiti ?? new List<Prestito>();
+
         }
 
         public void AggiungiLibro(Libro libro) => Libri.Add(libro);
@@ -26,9 +34,21 @@ namespace BibliotecaManager.Controllers
 
         public bool EliminaLibro(Libro libro)
         {
-            if (prestiti.Any(p => p.LibroPrestato == libro && p.DataDiConsegna == null)) return false;
+            MessageBox.Show($"Eliminazione libro in corso... {Prestiti.Count}, {libro.Titolo},  {Prestiti.Any(p => p.LibroPrestato == libro && p.DataDiConsegna == null)}", "Attendere", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (libro == null)
+            {
+                MessageBox.Show("Il libro da eliminare non può essere null.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (Prestiti.Any(p => p.LibroPrestato.ISBN == libro.ISBN))
+                 //&& p.DataDiConsegna == null
+            {
+                MessageBox.Show("Impossibile eliminare il libro, è attualmente in prestito.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            Libri.Remove(libro);
 
-            return Libri.Remove(libro);
+            return true;
 
         }
     }

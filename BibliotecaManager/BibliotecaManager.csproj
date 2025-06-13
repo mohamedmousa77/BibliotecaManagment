@@ -180,6 +180,9 @@
     <EmbeddedResource Include="Forms\ModificaLibriForm.resx">
       <DependentUpon>ModificaLibriForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PrestitiForm.resx">
+      <DependentUpon>PrestitiForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\StatisticheForm.resx">
       <DependentUpon>StatisticheForm.cs</DependentUpon>
     </EmbeddedResource>
