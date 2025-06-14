@@ -105,13 +105,61 @@ namespace BibliotecaManager.Forms
             this.Controls.Add(menuStrip);
         }
 
+        private void btnAutori_Click(object sender, EventArgs e)
+        {
+            var form = new AutoriForm(personaController, storageService, folderPath);
+            form.ShowDialog();
+        }
+
+        private void btnClienti_Click(object sender, EventArgs e)
+        {
+            var form = new ClientiForm(personaController, storageService, folderPath);
+            form.ShowDialog();
+        }
+
+        private void btnLibri_Click(object sender, EventArgs e)
+        {
+            var form = new Gestione(libroController, storageService, folderPath);
+            form.ShowDialog();
+        }
+        private void btnPrestiti_Click(object sender, EventArgs e)
+        {
+            var form = new PrestitiForm(prestitoController, storageService, folderPath);
+            form.ShowDialog();
+        }
+
+        private void btnSalva_Click(object sender, EventArgs e)
+        {
+            SalvaArchivio();
+        }
+        private void btnCarica_Click(object sender, EventArgs e)
+        {
+            CaricaArchivio();
+        }
+
+        private void btnStatistiche_Click(object sender, EventArgs e)
+        {
+            var form = new StatisticheForm(prestitoController.Prestiti);
+            form.ShowDialog();
+        }
         public void SalvaArchivio()
         {
             using (FolderBrowserDialog dlg = new FolderBrowserDialog())
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("Archivio salvato.");
+                    //MessageBox.Show("Archivio salvato.");
+                    try
+                    {
+                        storageService.SalvaTutti(dlg.SelectedPath, personaController.Autori, personaController.Clienti, libroController.Libri, prestitoController.Prestiti);
+                        MessageBox.Show("Archivio salvato correttamente!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Errore durante il salvataggio: {ex.Message}", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                 }
             }
 
@@ -123,11 +171,31 @@ namespace BibliotecaManager.Forms
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("Archivio caricato.");
+                    //MessageBox.Show("Archivio caricato.");
+                    try
+                    {
+                        var (autoriCaricati, clientiCaricati, libriCaricati, prestitiCaricati) = storageService.CaricaTutti(dlg.SelectedPath);
+
+                        personaController.Autori = autoriCaricati;
+                        personaController.Clienti = clientiCaricati;
+                        libroController.Libri = libriCaricati;
+                        prestitoController.Prestiti = prestitiCaricati;
+
+                        MessageBox.Show("Archivio caricato correttamente!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Errore durante il caricamento: {ex.Message}", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
-        
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         //private void btnGestione_Click(object sender, EventArgs e)
         //{
         //    MessageBox.Show("Clic ricevuto!");
@@ -159,6 +227,6 @@ namespace BibliotecaManager.Forms
         //    //panelContent.Controls.Add(lbl);
         //}
 
-        
+
     }
 }
