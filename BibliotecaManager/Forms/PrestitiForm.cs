@@ -45,16 +45,16 @@ namespace BibliotecaManager.Forms
                         PrestitiController.AggiungiPrestito(form.Prestito);
                         AggiornaGrid();
                         //storageService.SalvaTutti(folderPath,new List<Autore>(), new List<Cliente>(), new List<Libro>(), PrestitoController.Prestiti);
-                        storageService.SalvaPrestiti(folderPath, PrestitiController.Prestiti);
-                        if (storageService.VerificaSalvataggio(folderPath))
-                        {
-                            MessageBox.Show($"Dati salvati correttamente ", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //{ form.Prestito.Autore.NomeCompleto}, { form.Prestito.Cliente.NomeCompleto}
-                        }
-                        else
-                        {
-                            MessageBox.Show("Errore nella verifica del salvataggio", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        //storageService.SalvaPrestiti(folderPath, PrestitiController.Prestiti);
+                        //if (storageService.VerificaSalvataggio(folderPath))
+                        //{
+                        //    MessageBox.Show($"Dati salvati correttamente ", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //    //{ form.Prestito.Autore.NomeCompleto}, { form.Prestito.Cliente.NomeCompleto}
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("Errore nella verifica del salvataggio", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //}
                     }
                     catch (Exception ex)
                     {

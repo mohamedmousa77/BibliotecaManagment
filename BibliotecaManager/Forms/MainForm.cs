@@ -19,30 +19,27 @@ namespace BibliotecaManager.Forms
         public MainForm()
         {
             InitializeComponent();
-            InitializeMenu();
+            //InitializeMenu();
             //LoadForm(new Form { BackColor = Color.Orange });
             folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BibliotecaManager\\";
             personaController = new PersonaController();
             storageService = new DataStorageService();
             prestitoController = new PrestitoController();
             libroController = new LibroController(folderPath);
-            
 
-            try
-            {
-                var (autori, clienti, libri, prestiti) = storageService.CaricaTutti(folderPath);
-                personaController.Autori = autori;
-                personaController.Clienti = clienti;
-                prestitoController.Prestiti = prestiti;
-                libroController.Libri = libri;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Errore durante il caricamento dei dati: {ex.Message}", "Errore", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            
+            //try
+            //{
+            //    var (autori, clienti, libri, prestiti) = storageService.CaricaTutti(folderPath);
+            //    personaController.Autori = autori;
+            //    personaController.Clienti = clienti;
+            //    prestitoController.Prestiti = prestiti;
+            //    libroController.Libri = libri;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Errore durante il caricamento dei dati: {ex.Message}", "Errore", 
+            //        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
         }
 
         //private void LoadForm(Form form)

@@ -97,15 +97,15 @@ namespace BibliotecaManager.Forms
                         personaController.AggiungiCliente(form.Cliente);
                         AggiornaGrid();
                         //storageService.SalvaTutti(folderPath, new List<Autore>() ,personaController.Clienti, new List<Libro>(), new List<Prestito>());
-                        storageService.SalvaClienti(folderPath, personaController.Clienti);
-                        if (storageService.VerificaSalvataggio(folderPath))
-                        {
-                            //MessageBox.Show($"Dati salvati correttamente", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Errore nella verifica del salvataggio", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        //storageService.SalvaClienti(folderPath, personaController.Clienti);
+                        //if (storageService.VerificaSalvataggio(folderPath))
+                        //{
+                        //    //MessageBox.Show($"Dati salvati correttamente", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("Errore nella verifica del salvataggio", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //}
                     }
                     catch (Exception ex)
                     {
