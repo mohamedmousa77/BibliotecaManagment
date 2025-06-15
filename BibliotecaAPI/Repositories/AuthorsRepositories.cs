@@ -11,7 +11,7 @@ namespace BibliotecaAPI.Repositories
         public AuthorsRepositories(DataStorageService dataStorageService)
         {
             _dataStorageService = dataStorageService;
-            _folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BibliotecaManager\\";
+            _folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BibliotecaManagerApi\\";
             
         }
 
@@ -27,7 +27,7 @@ namespace BibliotecaAPI.Repositories
         {
             var autori = _dataStorageService.CaricaAutori(_folderPath);
 
-            var autoreDaEliminare = autori.FirstOrDefault(a => a.Persona.ID == id.ToString());
+            var autoreDaEliminare = autori.FirstOrDefault(a => a.Persona.ID == id);
             if (autoreDaEliminare != null)
             {
                 autori.Remove(autoreDaEliminare);
@@ -49,7 +49,7 @@ namespace BibliotecaAPI.Repositories
         public Task<Autore> GetAuthorById(int id)
         {
             var autori = _dataStorageService.CaricaAutori(_folderPath);
-            return Task.FromResult(autori.FirstOrDefault(a => a.Persona.ID == id.ToString())!);
+            return Task.FromResult(autori.FirstOrDefault(a => a.Persona.ID == id)!);
         }
 
         public Task UpdateAuthor(Autore author)

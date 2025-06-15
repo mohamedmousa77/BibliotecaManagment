@@ -9,7 +9,7 @@ namespace BibliotecaAPI.Repositories
         private string _folderPath;
         public ClientsRepositories(DataStorageService dataStorageService)
         {
-            _folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BibliotecaManager\\";
+            _folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BibliotecaManagerApi\\";
             _dataStorageService = dataStorageService;
         }
         public Task AddClient(Cliente client)
@@ -23,7 +23,7 @@ namespace BibliotecaAPI.Repositories
         public Task DeleteClient(int id)
         {
             var clienti = _dataStorageService.CaricaClienti(_folderPath);
-            return Task.FromResult(clienti.FirstOrDefault(c => c.Persona.ID == id.ToString()));
+            return Task.FromResult(clienti.FirstOrDefault(c => c.Persona.ID == id));
         }
 
         public Task<IEnumerable<Cliente>> GetAllClients()
@@ -35,7 +35,7 @@ namespace BibliotecaAPI.Repositories
         public Task<Cliente> GetClientById(int clienteId)
         {
             var clienti = _dataStorageService.CaricaClienti(_folderPath);
-            return Task.FromResult(clienti.FirstOrDefault(c => c.Persona.ID == clienteId.ToString()));
+            return Task.FromResult(clienti.FirstOrDefault(c => c.Persona.ID == clienteId));
         }
 
         public Task UpdateClient(Cliente client)

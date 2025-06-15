@@ -39,7 +39,12 @@ namespace BibliotecaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Autore>> CreateAuthor(Autore autore)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            //if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                return BadRequest($"ModelState not valid: {string.Join(", ", errors)}");
+            }
             await _authorsRepositories.AddAuthor(autore);
             return CreatedAtAction(nameof(GetAuthorByID), new { id = autore.Persona.ID }, autore);
         }

@@ -6,7 +6,7 @@ namespace BibliotecaManager.Models
 {
     public class Persona
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Nome { get; set; }
         public string Cognome { get; set; }
 

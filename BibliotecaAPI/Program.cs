@@ -26,6 +26,21 @@ namespace BibliotecaAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            
+
+           
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("MyCors", builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+
+            });
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -34,15 +49,12 @@ namespace BibliotecaAPI
                 app.UseSwaggerUI(config =>
                 {
                     config.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
-                    config.RoutePrefix = string.Empty; 
+                    config.RoutePrefix = string.Empty;
                 });
             }
+            app.UseAuthorization();
 
-        // Configure the HTTP request pipeline.
-
-        //app.UseHttpsRedirection();
-
-        app.UseAuthorization();
+            app.UseCors("MyCors");
 
 
             app.MapControllers();
