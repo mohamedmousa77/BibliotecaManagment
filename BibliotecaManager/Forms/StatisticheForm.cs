@@ -45,7 +45,7 @@ namespace BibliotecaManager.Forms
             // Conta i clienti che hanno almeno un prestito
             label8.Text = prestiti.Select(p => p.Cliente).Distinct().Count().ToString();
             // Conta i libri prestati (Attualmente in prestito)
-            label7.Text = percentualeSoci.ToString();
+            label7.Text = $"{percentualeSoci} %".ToString();
             //(prestiti.Where(p => p.DataDiConsegna == null).Select(p => p.LibroPrestato.ISBN).Distinct().Count()).ToString();
         }
         private void StatisticheForm_Load(object sender, EventArgs e)
