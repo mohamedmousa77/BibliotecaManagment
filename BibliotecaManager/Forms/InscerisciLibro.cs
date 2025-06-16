@@ -1,4 +1,5 @@
-﻿using BibliotecaManager.Models;
+﻿using BibliotecaManager.Controllers;
+using BibliotecaManager.Models;
 using BibliotecaManager.Services;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls.WebParts;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -19,9 +21,13 @@ namespace BibliotecaManager.Forms
 
         private List<Autore> listaAutori;
         private Autore autoreSelezionato;
-        public InscerisciLibro(string folderPath)
+        private PersonaController personaController;
+        private PathController pathController;
+        public InscerisciLibro(string folderPath, PersonaController PersonaC)
         {
             InitializeComponent();
+            pathController = new PathController();
+            personaController = PersonaC;
             CaricaAutori(folderPath);
         }
 
@@ -56,9 +62,24 @@ namespace BibliotecaManager.Forms
 
         private void CaricaAutori(string folderPath)
         {
-            var storageService = new DataStorageService();
-            var (autori, _, _, _) = storageService.CaricaTutti(folderPath);
+            //var storageService = new DataStorageService();
+            //var (autori, _, _, _) = storageService.CaricaTutti(pathController.FolderPath);
 
+            //if (autori == null || autori.Count == 0)
+            //{
+            //    MessageBox.Show(
+            //        "Non sono presenti autori nel database.\n\n" +
+            //        "Per favore, aggiungi almeno un autore prima di inserire un prestito.",
+            //        "Attenzione",
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Warning);
+
+            //    autoriComboBox.DataSource = null;
+            //    autoreSelezionato = null;
+            //    return;
+            //}
+
+            var autori = personaController.Autori;
             if (autori == null || autori.Count == 0)
             {
                 MessageBox.Show(
@@ -72,8 +93,6 @@ namespace BibliotecaManager.Forms
                 autoreSelezionato = null;
                 return;
             }
-
-
             listaAutori = autori;
 
             autoriComboBox.DataSource = listaAutori;

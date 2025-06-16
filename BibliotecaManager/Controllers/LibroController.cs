@@ -9,17 +9,19 @@ namespace BibliotecaManager.Controllers
     public class LibroController
     {
         public List<Libro> Libri { get; set; } = new List<Libro>();
+        private readonly PathController pathController;
 
         private  List<Prestito> Prestiti;
         private DataStorageService dataService;
 
-        public LibroController(string folderPath)
+        public LibroController(PathController PathController)
         {
             dataService = new DataStorageService();
+            pathController = PathController;
 
-            var (_, _, libri, prestiti) = dataService.CaricaTutti(folderPath);
-            Libri = libri ?? new List<Libro>();
-            Prestiti = prestiti ?? new List<Prestito>();
+            //var (_, _, libri, prestiti) = dataService.CaricaTutti(folderPath);
+            //Libri = libri ?? new List<Libro>();
+            //Prestiti = prestiti ?? new List<Prestito>();
 
         }
 

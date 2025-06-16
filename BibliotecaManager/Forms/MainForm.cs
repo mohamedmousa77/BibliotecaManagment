@@ -6,10 +6,12 @@ namespace BibliotecaManager.Forms
 {
     public partial class MainForm : Form
     {
+        //string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BibliotecaManager\\";
         private PersonaController personaController;
         private DataStorageService storageService;
         private PrestitoController prestitoController;
         private LibroController libroController;
+        private PathController pathController;
         private string folderPath;
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -21,11 +23,15 @@ namespace BibliotecaManager.Forms
             InitializeComponent();
             //InitializeMenu();
             //LoadForm(new Form { BackColor = Color.Orange });
-            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BibliotecaManager\\";
-            personaController = new PersonaController();
+            
+            pathController = new PathController();
             storageService = new DataStorageService();
+            folderPath = pathController.FolderPath;
+            personaController = new PersonaController();
+            
             prestitoController = new PrestitoController();
-            libroController = new LibroController(folderPath);
+            
+            libroController = new LibroController(pathController);
 
             //try
             //{
@@ -78,29 +84,29 @@ namespace BibliotecaManager.Forms
 
         //}
 
-        private void InitializeMenu()
-        {
-            var menuStrip = new MenuStrip();
+        //private void InitializeMenu()
+        //{
+        //    var menuStrip = new MenuStrip();
 
-            var gestioneMenu = new ToolStripMenuItem("Gestione");
-            gestioneMenu.DropDownItems.Add("Autori", null, (s, e) => new AutoriForm(personaController, storageService, folderPath).ShowDialog());
-            gestioneMenu.DropDownItems.Add("Clienti", null, (s, e) => new ClientiForm(personaController, storageService, folderPath).ShowDialog());
-            gestioneMenu.DropDownItems.Add("Libri", null, (s, e) => new Gestione(libroController, storageService, folderPath).ShowDialog());
-            gestioneMenu.DropDownItems.Add("Prestiti", null, (s, e) => new PrestitiForm(prestitoController, storageService, folderPath).ShowDialog());
+        //    var gestioneMenu = new ToolStripMenuItem("Gestione");
+        //    gestioneMenu.DropDownItems.Add("Autori", null, (s, e) => new AutoriForm(personaController, storageService, folderPath).ShowDialog());
+        //    gestioneMenu.DropDownItems.Add("Clienti", null, (s, e) => new ClientiForm(personaController, storageService, folderPath).ShowDialog());
+        //    gestioneMenu.DropDownItems.Add("Libri", null, (s, e) => new Gestione(libroController, storageService, folderPath).ShowDialog());
+        //    gestioneMenu.DropDownItems.Add("Prestiti", null, (s, e) => new PrestitiForm(prestitoController, storageService, folderPath).ShowDialog());
 
-            var statisticheMenu = new ToolStripMenuItem("Statiche");
-            statisticheMenu.Click += (s, e) => new StatisticheForm(prestitoController.Prestiti).ShowDialog();
+        //    var statisticheMenu = new ToolStripMenuItem("Statiche");
+        //    statisticheMenu.Click += (s, e) => new StatisticheForm(prestitoController.Prestiti).ShowDialog();
 
-            var archivioMenu = new ToolStripMenuItem("Archivio");
-            archivioMenu.DropDownItems.Add("Salva", null, (s, e) => SalvaArchivio());
-            archivioMenu.DropDownItems.Add("Carica", null, (s, e) => CaricaArchivio());
+        //    var archivioMenu = new ToolStripMenuItem("Archivio");
+        //    archivioMenu.DropDownItems.Add("Salva", null, (s, e) => SalvaArchivio());
+        //    archivioMenu.DropDownItems.Add("Carica", null, (s, e) => CaricaArchivio());
 
-            menuStrip.Items.Add(gestioneMenu);
-            menuStrip.Items.Add(statisticheMenu);
-            menuStrip.Items.Add(archivioMenu);
-            this.MainMenuStrip = menuStrip;
-            this.Controls.Add(menuStrip);
-        }
+        //    menuStrip.Items.Add(gestioneMenu);
+        //    menuStrip.Items.Add(statisticheMenu);
+        //    menuStrip.Items.Add(archivioMenu);
+        //    this.MainMenuStrip = menuStrip;
+        //    this.Controls.Add(menuStrip);
+        //}
 
         private void btnAutori_Click(object sender, EventArgs e)
         {
@@ -116,12 +122,12 @@ namespace BibliotecaManager.Forms
 
         private void btnLibri_Click(object sender, EventArgs e)
         {
-            var form = new Gestione(libroController, storageService, folderPath);
+            var form = new Gestione(libroController, storageService, folderPath, personaController);
             form.ShowDialog();
         }
         private void btnPrestiti_Click(object sender, EventArgs e)
         {
-            var form = new PrestitiForm(prestitoController, storageService, folderPath);
+            var form = new PrestitiForm(prestitoController, storageService, folderPath, personaController, libroController);
             form.ShowDialog();
         }
 
@@ -169,6 +175,8 @@ namespace BibliotecaManager.Forms
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     //MessageBox.Show("Archivio caricato.");
+                    pathController.updatePath(dlg.SelectedPath);
+
                     try
                     {
                         var (autoriCaricati, clientiCaricati, libriCaricati, prestitiCaricati) = storageService.CaricaTutti(dlg.SelectedPath);

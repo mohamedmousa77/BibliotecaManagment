@@ -17,9 +17,12 @@ namespace BibliotecaManager.Forms
     {
         private PrestitoController PrestitiController;
         private DataStorageService storageService;
+
+        private PersonaController personaController;
+        private LibroController libroController;
         private string folderPath;
 
-        public PrestitiForm(PrestitoController controller, DataStorageService storage, string path)
+        public PrestitiForm(PrestitoController controller, DataStorageService storage, string path, PersonaController personaCon, LibroController libroCon)
         {
 
             InitializeComponent();
@@ -28,6 +31,9 @@ namespace BibliotecaManager.Forms
             folderPath = path;
             PrestitiController = controller;
 
+            personaController = personaCon;
+            libroController = libroCon;
+
             ConfiguraGrid();
             AggiornaGrid(); // Ora mostrerà i dati caricati dal file JSON
 
@@ -35,7 +41,7 @@ namespace BibliotecaManager.Forms
 
         private void btnAggiungi_Click(object sender, EventArgs e)
         {
-            using (var form = new InserisciPrestitoForm(folderPath))
+            using (var form = new InserisciPrestitoForm(folderPath, personaController, libroController))
             {
                 //var PrestitoController = new PrestitoController();
                 if (form.ShowDialog() == DialogResult.OK)

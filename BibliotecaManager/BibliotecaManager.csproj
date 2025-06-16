@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <IntermediateOutputPath>C:\Users\Mohamed Mousa\AppData\Local\Temp\vs6BD9.tmp\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\A714apulia\AppData\Local\Temp\vs92B.tmp\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <IntermediateOutputPath>C:\Users\Mohamed Mousa\AppData\Local\Temp\vs6BD9.tmp\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\A714apulia\AppData\Local\Temp\vs92B.tmp\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="APIController\ApiController.cs" />
     <Compile Include="Controllers\LibroController.cs" />
+    <Compile Include="Controllers\PathController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\PrestitoController.cs" />
     <Compile Include="Form1.cs">

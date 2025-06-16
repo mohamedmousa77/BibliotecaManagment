@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using BibliotecaManager.Models;
+using System.Windows.Forms;
 
 namespace BibliotecaManager.Services
 {
@@ -35,6 +36,7 @@ namespace BibliotecaManager.Services
 
         public (List<Autore>, List<Cliente>, List<Libro>, List<Prestito>) CaricaTutti(string folderPath)
         {
+            MessageBox.Show(folderPath, "Caricamento Dati", MessageBoxButtons.OK, MessageBoxIcon.Information);
             try
             {
                 if (!Directory.Exists(folderPath))

@@ -1,3 +1,4 @@
+using BibliotecaManager.Controllers;
 using BibliotecaManager.Models;
 using BibliotecaManager.Services;
 using System;
@@ -10,6 +11,9 @@ namespace BibliotecaManager.Forms
     {
         public Prestito Prestito { get; private set; }
 
+        private PersonaController personaController;
+        private LibroController libroController;
+
         private List<Cliente> listaClienti;
         private Cliente clienteSelezionato;
 
@@ -19,20 +23,25 @@ namespace BibliotecaManager.Forms
         private List<Libro> listaLibri;
         private Libro libroSelezionato;
 
-        public InserisciPrestitoForm(string folderPath)
+        public InserisciPrestitoForm(string folderPath, PersonaController personaCon, LibroController libroCon)
         {
             InitializeComponent();
             //CaricaClienti(folderPath);
             //CaricaAutori(folderPath);
             //CaricaLibri(folderPath);
+            personaController = personaCon;
+            libroController = libroCon;
             CaricaDati(folderPath);
-
+            
         }
 
         private bool CaricaDati(string folderPath)
         {
-            var storageService = new DataStorageService();
-            var (autori, clienti, libri, _) = storageService.CaricaTutti(folderPath);
+            //var storageService = new DataStorageService();
+            //var (autori, clienti, libri, _) = storageService.CaricaTutti(folderPath);
+            var autori = personaController.Autori;
+            var clienti = personaController.Clienti;
+            var libri = libroController.Libri;
 
             if (clienti == null || clienti.Count == 0)
             {

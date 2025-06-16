@@ -18,8 +18,9 @@ namespace BibliotecaManager.Forms
     {
         private LibroController libriController;
         private DataStorageService storageService;
+        private PersonaController PersonaController;
         private string folderPath;
-        public Gestione(LibroController controller, DataStorageService storage, string path)
+        public Gestione(LibroController controller, DataStorageService storage, string path, PersonaController PersonaCon)
         {
             if (controller == null)
                 throw new ArgumentNullException(nameof(controller), "LibroController non puo essere nullo");
@@ -32,6 +33,7 @@ namespace BibliotecaManager.Forms
             libriController = controller;
             storageService = storage;
             folderPath = path;
+            PersonaController = PersonaCon;
 
             ConfiguraGrid();
             AggiornaGrid();
@@ -39,7 +41,7 @@ namespace BibliotecaManager.Forms
 
         private void btnAggiungi_Click(object sender, EventArgs e)
         {
-            using (var form = new InscerisciLibro(folderPath)) 
+            using (var form = new InscerisciLibro(folderPath, PersonaController)) 
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
