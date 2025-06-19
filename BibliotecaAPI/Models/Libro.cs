@@ -4,6 +4,7 @@ namespace BibliotecaManager.Models
 {
     public class Libro
     {
+        public int Id { get; set; }
         public string ISBN { get; set; }
         public string Titolo { get; set; }
         public string CasaEditrice { get; set; }

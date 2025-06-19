@@ -118,6 +118,12 @@ namespace BibliotecaManager.Services
         public List<Cliente> CaricaClienti(string folderPath) =>
             LeggiFile<Cliente>(Path.Combine(folderPath, ClientiFile));
 
+        public List<Prestito> CaricaPrestiti(string folderPath) =>
+            LeggiFile<Prestito>(Path.Combine(folderPath, PrestitiFile));
+
+        public List<Libro> CaricaLibri(string folderPath) =>
+            LeggiFile<Libro>(Path.Combine(folderPath, LibriFile));
+
         private List<T> LeggiFile<T>(string path)
         {
             if (!File.Exists(path))

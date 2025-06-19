@@ -4,7 +4,7 @@ namespace BibliotecaManager.Models
 {
     public class Prestito
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public Cliente Cliente { get;    set; }    
 
         public Libro LibroPrestato { get;  set; }

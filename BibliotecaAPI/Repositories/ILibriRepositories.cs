@@ -4,16 +4,14 @@ namespace BibliotecaAPI.Repositories
 {
     public interface ILibriRepositories
     {
-        Task<IEnumerable<Prestito>> GetAllPresitit();
+        Task<IEnumerable<Libro>> GetAllLibri();
 
-        Task<Prestito> GetPrestitoById(int prestitioId);
+        Task<Libro> GetLibroById(int libroID);
 
-        Task UpdatePrestito(Prestito prestito);
+        Task UpdateLibro(Libro Libro);
 
-        Task DeletePrestito(int id);
+        Task DeleteLibro(int id);
 
-        Task AddPrestito(Prestito prestito);
-
-        Task MarkPrestitoAsConsegnato(int id);
+        Task AddLibro(Libro Libro);
     }
 }

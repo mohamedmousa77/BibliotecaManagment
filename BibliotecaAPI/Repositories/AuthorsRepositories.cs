@@ -58,7 +58,7 @@ namespace BibliotecaAPI.Repositories
             var index = autori.FindIndex(a => a.Persona.ID == author.Persona.ID);
             if (index != -1)
             {
-                autori[index] = author; // Sostituisci con la nuova versione
+                autori[index] = author;
                 _dataStorageService.SalvaAutori(_folderPath, autori);
             }
             else 
