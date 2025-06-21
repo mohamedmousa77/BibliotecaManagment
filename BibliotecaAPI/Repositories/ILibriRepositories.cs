@@ -13,5 +13,7 @@ namespace BibliotecaAPI.Repositories
         Task DeleteLibro(int id);
 
         Task AddLibro(Libro Libro);
+
+        Task<int> GenerateUniqueID();
     }
-}
+ }

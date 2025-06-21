@@ -24,6 +24,12 @@ namespace BibliotecaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Cliente>> CreateClient(Cliente client)
         {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                return BadRequest($"ModelState not valid: {string.Join(", ", errors)}");
+            }
+            client.Persona.ID = await _clientsRepositories.GenerateUniqueID();
             await _clientsRepositories.AddClient(client);
             return Ok(client);
         }

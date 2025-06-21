@@ -1,6 +1,7 @@
 ﻿using BibliotecaAPI.Repositories;
 using BibliotecaManager.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
 namespace BibliotecaAPI.Controllers
 {
@@ -43,6 +44,7 @@ namespace BibliotecaAPI.Controllers
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
                 return BadRequest($"ModelState not valid: {string.Join(", ", errors)}");
             }
+            prestito.Id = await _prestitiRepositories.GenerateUniqueID();
             await _prestitiRepositories.AddPrestito(prestito);
             return CreatedAtAction(nameof(GetLoanById), new { id = prestito.Id }, prestito);
         }

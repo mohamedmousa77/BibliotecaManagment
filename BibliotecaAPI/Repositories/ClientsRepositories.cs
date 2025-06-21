@@ -20,6 +20,22 @@ namespace BibliotecaAPI.Repositories
             return Task.CompletedTask;
         }
 
+        public Task<int> GenerateUniqueID()
+        {
+            List<Cliente> clienti = _dataStorageService.CaricaClienti(_folderPath);
+            int newId = new Random().Next(1000, 10000);
+            bool isUnique = false;
+            do
+            {
+                newId = new Random().Next(1000, 10000); // 4 cifre
+                isUnique = clienti.Any(l => l.Persona.ID == newId);
+            }
+            while (isUnique);
+
+
+            return Task.FromResult(newId);
+        }
+
         public Task DeleteClient(int id)
         {
             var clienti = _dataStorageService.CaricaClienti(_folderPath);

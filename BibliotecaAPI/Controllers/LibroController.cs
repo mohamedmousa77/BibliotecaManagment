@@ -42,6 +42,7 @@ namespace BibliotecaAPI.Controllers
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
                 return BadRequest($"ModelState not valid: {string.Join(", ", errors)}");
             }
+            libro.Id = await _libriRepositories.GenerateUniqueID();
             await _libriRepositories.AddLibro(libro);
             return CreatedAtAction(nameof(GetBookById), new { id = libro.Id}, libro);
         }

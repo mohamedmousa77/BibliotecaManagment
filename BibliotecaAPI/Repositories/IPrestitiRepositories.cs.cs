@@ -15,5 +15,7 @@ namespace BibliotecaAPI.Repositories
         Task AddPrestito(Prestito prestito);
 
         Task MarkPrestitoAsConsegnato(int id);
+
+        Task<int> GenerateUniqueID();
     }
 }

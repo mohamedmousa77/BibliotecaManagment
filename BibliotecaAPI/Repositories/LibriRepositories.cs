@@ -1,8 +1,10 @@
 ﻿using BibliotecaManager.Models;
 using BibliotecaManager.Services;
+using System;
 
 namespace BibliotecaAPI.Repositories
 {
+
     public class LibriRepositories : ILibriRepositories
     {
         public DataStorageService _dataStorageService;
@@ -22,6 +24,7 @@ namespace BibliotecaAPI.Repositories
             return Task.CompletedTask;
         }
 
+       
         public Task DeleteLibro(int id)
         {
             List<Libro> libri = _dataStorageService.CaricaLibri(_folderPath);
@@ -66,5 +69,22 @@ namespace BibliotecaAPI.Repositories
             }
             return Task.CompletedTask;
         }
+
+        public Task<int> GenerateUniqueID()
+        {
+            List<Libro> libri = _dataStorageService.CaricaLibri(_folderPath);
+            int newId = new Random().Next(1000, 10000);
+            bool isUnique = false;
+            do
+            {
+                newId = new Random().Next(1000, 10000); // 4 cifre
+                isUnique = libri.Any(l => l.Id == newId);
+            }
+            while (isUnique);
+           
+
+            return Task.FromResult(newId);
+        }
+
     }
 }

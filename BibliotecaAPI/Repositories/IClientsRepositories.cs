@@ -13,5 +13,7 @@ namespace BibliotecaAPI.Repositories
         Task DeleteClient(int id);
 
         Task AddClient(Cliente client);
+
+        Task<int> GenerateUniqueID();
     }
 }

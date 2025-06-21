@@ -9,5 +9,8 @@ namespace BibliotecaAPI.Repositories
         Task AddAuthor(Autore author);
         Task UpdateAuthor(Autore author);
         Task DeleteAuthor(int id);
+
+        Task<int> GenerateUniqueID();
     }
+
 }
