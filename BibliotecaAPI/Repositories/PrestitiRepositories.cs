@@ -18,6 +18,7 @@ namespace BibliotecaAPI.Repositories
         {
             List<Prestito> prestiti = _dataStorageService.CaricaPrestiti(_folderPath);
             prestiti.Add(prestito);
+            _dataStorageService.SalvaPrestiti(_folderPath, prestiti);
             return Task.CompletedTask;
         }
 

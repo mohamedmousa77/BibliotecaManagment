@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace BibliotecaManager.Models
 {
     public class Prestito
     {
         public int Id { get; set; }
-        public Cliente Cliente { get;    set; }    
-
+        public Cliente Cliente { get;    set; }
+        [JsonPropertyName("libroPrestato")]
         public Libro LibroPrestato { get;  set; }
 
         public Autore Autore { get; set; }

@@ -14,11 +14,14 @@ namespace BibliotecaAPI
             // Add services to the container.
 
             builder.Services.AddScoped<DataStorageService>();
+
             builder.Services.AddScoped<IAuthorsRepositories, AuthorsRepositories>();
 
             builder.Services.AddScoped<ILibriRepositories, LibriRepositories>();
 
             builder.Services.AddScoped<IClientsRepositories, ClientsRepositories>();
+
+            builder.Services.AddScoped<IPrestitiRepositories, PrestitiRepositories>();
 
 
             builder.Services.AddControllers();
