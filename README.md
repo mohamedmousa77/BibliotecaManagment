@@ -31,6 +31,13 @@ Intuitive Tkinter-based interface for smooth navigation.
 | API Comm  | RESTful API (JSON)                  |
 | UI Design | Angular Material And Bootstrap      |
 
+**TODO**
+
+ Add authentication with JWT
+
+ Add user roles (admin, librarian, guest)
+
+
 
 **🙋‍♂️ Author**
 
