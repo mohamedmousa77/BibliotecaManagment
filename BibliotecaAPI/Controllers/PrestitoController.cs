@@ -21,7 +21,7 @@ namespace BibliotecaAPI.Controllers
         {
             var prestiti = 
             await _prestitiRepositories.GetAllPresitit();
-            return Ok();
+            return Ok(prestiti);
         }
 
         [HttpGet("{id}")]

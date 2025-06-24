@@ -29,7 +29,7 @@ namespace BibliotecaAPI.Repositories
             bool isUnique = false;
             do
             {
-                newId = new Random().Next(1000, 10000); // 4 cifre
+                newId = new Random().Next(1000, 10000);
                 isUnique = prestit.Any(l => l.Id == newId);
             }
             while (isUnique);
